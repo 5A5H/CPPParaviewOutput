@@ -26,6 +26,9 @@ Currently, only **unstructured grids** in **ascii** **XML** format can be export
 ## Install/ Use it in your project
 See how to use/install at [Usage](usage.md).
 
+## On the VTK format
+Some remarks on the vtk format used by this project are giveen [here](vtk_format.md).
+
 ## Requirements:
 * `CMake > 3.1 `
 * `C++17`
