@@ -1,8 +1,3 @@
-# CPPParaviewOutput
-A very basic VTU-generator.
-
-The documentation of this library can be found on [Project documentation](https://5a5h.github.io/CPPParaviewOutput/).
-
 ## Usage Screnarios:
 ### Bare include
 You may use the headders in your project as they where self made:

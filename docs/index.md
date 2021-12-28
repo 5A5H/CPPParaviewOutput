@@ -23,6 +23,9 @@ Currently, only **unstructured grids** in **ascii** **XML** format can be export
 * **Flexibility**: The functions for introducing the mesh data to be written to the file offer a very generic interface to be 
   adoptable for many different data structures of the host-code. Convinience interfaces might be added in the future, too.
 
+## Install/ Use it in your project
+See how to use/install at [Usage](usage.md).
+
 ## Requirements:
 * `CMake > 3.1 `
 * `C++17`
