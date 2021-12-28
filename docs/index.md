@@ -24,5 +24,5 @@ Currently, only **unstructured grids** in **ascii** **XML** format can be export
   adoptable for many different data structures of the host-code. Convinience interfaces might be added in the future, too.
 
 ## Requirements:
-* `CMake > 3.0 `
+* `CMake > 3.1 `
 * `C++17`
