@@ -25,20 +25,30 @@ class VTK_UnstructuredGrid
         // Set points via VTK_DataArray interface
         bool setPoints(const double* data_start_, std::array<size_t, 2> shape_, std::array<size_t, 2> strides_);
 
+        // convenience overload for n-nodal coordinates inside a vector XI = {x1, y1, z1, ...,xn, yn, zn}
+        bool setPoints(const std::vector<double> &XI) { return setPoints(XI.data(), {XI.size()/3, 3}, {sizeof(double)*3, sizeof(double)});}
+
         // Set cells via VTK_DataArray interface
         bool setElements(const size_t* data_start_, std::array<size_t, 2> shape_, std::array<size_t, 2> strides_, VTK_CELLTYPE vtkcelltype);
 
-        // convenience overload for n-nodal coordinates inside a vector XI = {x1, y1, z1, ...,xn, yn, zn}
-        //bool setPoints(std::vector<double> &XI);
-        bool addCellData();
+        // convinience overload for elements in flattened format
+        bool setElements(const std::vector<size_t> &Elmt, VTK_CELLTYPE vtkcelltype) { return setElements(Elmt.data(), {Elmt.size()/VTK_CELL_NODES(vtkcelltype), VTK_CELL_NODES(vtkcelltype)}, {sizeof(size_t)*VTK_CELL_NODES(vtkcelltype), sizeof(size_t)}, vtkcelltype); }
         
         // Set cell data
         template <typename T>
         bool addCellData(const std::string name, const T* data_start_, std::array<size_t, 2> shape_, std::array<size_t, 2> strides_);
 
+        // convenience overload for m-component element data in a flattened format data_vector = {d11, d12, ..., d1m, d21, ..., dem} (e=number of elements)
+        template <typename T>
+        bool addCellData(const std::string name, const std::vector<T> &data_vector, const size_t no_components) { return addCellData(name, data_vector.data(), {NoCells_, no_components}, {sizeof(T)*no_components, sizeof(T)}); }
+
         // Set node data
         template <typename T>
         bool addNodeData(const std::string name, const T* data_start_, std::array<size_t, 2> shape_, std::array<size_t, 2> strides_);
+        
+        // convenience overload for m-component noda data in a flattened format data_vector = {d11, d12, ..., d1m, d21, ..., dnm} (n=number of nodes)
+        template <typename T>
+        bool addNodeData(const std::string name, const std::vector<T> &data_vector, const size_t no_components) { return addNodeData(name, data_vector.data(), {NoPoints_, no_components}, {sizeof(T)*no_components, sizeof(T)}); }
 
     public: 
         bool write(std::string path_to_file);

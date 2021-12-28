@@ -6,6 +6,8 @@
 
 #include <vtk_unstructuredgrid.hpp>
 
+#include "test_assets/hexmesh1.hpp"
+
 int main()
 {
     std::cout << "Test SimpleParaviewExport" << std::endl;
@@ -29,5 +31,15 @@ int main()
     VTKOUT_1.addCellData("Mass", ElmtData1.data(), {nonelmts1, 1}, {sizeof(size_t), sizeof(size_t)});
     VTKOUT_1.addNodeData("Velocity", NodeData1.data(), {nonodes1, 3}, {sizeof(double)*3, sizeof(double)});
     VTKOUT_1.write("msh_t1.vtu");
+
+    // Test 2:
+    // Read a hexahedron mesh from external file and export it via the convinience API for flat vectors
+    VTK_UnstructuredGrid VTKOUT_2;
+    VTKOUT_2.setPoints(HexMesh1XI);
+    VTKOUT_2.setElements(HexMesh1Elmt, VTK_HEXAHEDRON);
+    VTKOUT_2.addCellData("Flow", HexMesh1CellData, 3);
+    VTKOUT_2.addNodeData("Bin", HexMesh1NodeData, 1);
+    VTKOUT_2.write("msh_h1.vtu");
+
     return 0;
 }
