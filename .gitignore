@@ -37,3 +37,8 @@ build/*
 # Mac specifics
 *.DS_Store
 
+# Paraview files
+*.vtu
+
+# VSCode settings 
+.vscode/*
