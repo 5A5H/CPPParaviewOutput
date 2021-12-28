@@ -3,6 +3,9 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <sstream>
+
+#include "vtk_definitions.hpp"
 
 //abstract base class
 class VTK_Array

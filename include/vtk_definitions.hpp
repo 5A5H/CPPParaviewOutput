@@ -2,8 +2,6 @@
 
 #include <string>
 
-namspace CPPP {};
-
 /**!
  * \breif The VTK-CELLTYPE
  * Examples: 
